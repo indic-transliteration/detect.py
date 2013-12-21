@@ -19,7 +19,8 @@ SCHEMES = [
     ('oriya', 0x0b00),
     ('tamil', 0x0b80),
     ('telugu', 0x0c00),
-    ('hk', None)
+    ('hk', None),
+    ('iast', None),
 ]
 
 #: First code point for Brahmic scripts
@@ -33,7 +34,6 @@ BRAHMIC_LAST_CODE_POINT = 0x0d7f
 BLOCKS = sorted([x for x in SCHEMES if x[-1]], key=lambda x: -x[1])
 
 
-
 class Scheme:
 
     """Contains the names of various Sanskrit schemes."""
@@ -43,16 +43,28 @@ for name, code in SCHEMES:
     setattr(Scheme, name.upper(), name)
 
 
+class Signature:
+
+    """Contains patterns that characterize some scheme."""
+
+    IAST = u'āīūṛṝḷḹṃḥṅñṭḍṇśṣ'
+
+
 def detect(text):
     """Detect the input's transliteration scheme
 
     :param text: some text data
     """
     for L in text:
+        # Brahmic schemes
         code = ord(L)
         if code >= BRAHMIC_FIRST_CODE_POINT:
             for name, start_code in BLOCKS:
                 if start_code <= code <= BRAHMIC_LAST_CODE_POINT:
                     return name
+
+        # Romanizations
+        if L in Signature.IAST:
+            return Scheme.IAST
 
     return Scheme.HK

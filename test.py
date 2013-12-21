@@ -32,6 +32,24 @@ add(BASIC, S.HK, [
     'b',
     'c'
 ])
+add(BASIC, S.IAST, [
+    'rāga',
+    'nadī',
+    'vadhū',
+    'kṛta',
+    'pitṝn',
+    'kḷpta',
+    'ḹ',
+    'haṃsa',
+    'naraḥ',
+    'aṅga',
+    'añjana',
+    'kuṭumba',
+    'ḍamaru',
+    'aruṇa',
+    'śveta',
+    'ṣaṣ'
+])
 
 
 @pytest.mark.parametrize('data', BASIC)
