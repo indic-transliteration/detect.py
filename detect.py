@@ -45,7 +45,7 @@ def _make_signature():
         'iast': u'ā ī ū ṛ ṝ ḷ ḹ ṃ ḥ ṅ ñ ṭ ḍ ṇ ś ṣ'.split(),
         'itrans': u'aa ii uu ^i ^I Ri RI Li LI ~N ~n sh Sh'.split(),
         'kolkata': u'ā ī ū ṛ ṝ ḷ ḹ ē ō ṃ ḥ ṅ ñ ṭ ḍ ṇ ś ṣ'.split(),
-        'slp1': u'f F x X E O Y w W q Q'.split(),
+        'slp1': u'f F x X E O Y w W q Q Nk Ng'.split(),
         'velthuis': u'aa ii uu .r .l "n ~n .t .d .n ~s .s'.split(),
     }
 

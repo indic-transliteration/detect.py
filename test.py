@@ -96,6 +96,8 @@ add(BASIC, S.SLP1, [
     'XkAra',
     'kEvalya',
     'kOsalya',
+    'aNka',
+    'aNga',
     'aYjana',
     'kuwumba',
     'kaWora'
