@@ -52,6 +52,23 @@ add(BASIC, S.IAST, [
     'śveta',
     'ṣaṣ',
 ])
+add(BASIC, S.ITRANS, [
+    'raaga',
+    'nadii',
+    'vadhuu',
+    'kRRita',
+    'kR^ita',
+    'pitRRIn',
+    'pitR^In',
+    'kLLipta',
+    'kL^ipta',
+    'LLI',
+    'L^I',
+    'a~Nga',
+    'a~njana',
+    'shveta',
+    'ShaSh',
+])
 add(BASIC, S.KOLKATA, [
     'tējas',
     'sōma',

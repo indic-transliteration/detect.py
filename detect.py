@@ -21,6 +21,7 @@ SCHEMES = [
     ('telugu', 0x0c00),
     ('hk', None),
     ('iast', None),
+    ('itrans', None),
     ('kolkata', None),
     ('slp1', None),
 ]
@@ -41,6 +42,7 @@ Scheme = type('Enum', (), {name.upper() : name for name, code in SCHEMES})
 def _make_signature():
     all_tokens = {
         'iast': u'ā ī ū ṛ ṝ ḷ ḹ ṃ ḥ ṅ ñ ṭ ḍ ṇ ś ṣ'.split(),
+        'itrans': u'aa ii uu ^i ^I Ri RI Li LI ~N ~n sh Sh'.split(),
         'kolkata': u'ā ī ū ṛ ṝ ḷ ḹ ē ō ṃ ḥ ṅ ñ ṭ ḍ ṇ ś ṣ'.split(),
         'slp1': u'f F x X E O Y w W q Q'.split(),
     }
@@ -48,7 +50,7 @@ def _make_signature():
     signature = {}
     for scheme, tokens in all_tokens.iteritems():
         for t in tokens:
-            signature.setdefault(t, []).append(scheme)
+            signature.setdefault(t, set()).add(scheme)
     return signature
 
 #: Maps some token to the schemes that produce it.
@@ -59,6 +61,7 @@ SIGNATURE = _make_signature()
 DEFAULT_RANKS = [
     Scheme.HK,
     Scheme.IAST,
+    Scheme.ITRANS,
     Scheme.KOLKATA,
     Scheme.SLP1,
 ]
@@ -85,6 +88,7 @@ def detect(text):
     """
     candidates = set(name for (name, code) in SCHEMES)
 
+    prev = ''
     for L in text:
         # Brahmic schemes are all within a specific range of code points.
         code = ord(L)
@@ -94,11 +98,16 @@ def detect(text):
                     return name
 
         # Romanizations
-        bottleneck = SIGNATURE.get(L, [])
+        bottleneck = SIGNATURE.get(L, set())
+        if prev:
+            bottleneck = SIGNATURE.get(prev + L, bottleneck)
+
         if bottleneck:
             new_candidates = candidates.intersection(bottleneck)
             if len(new_candidates) == 1:
                 return list(new_candidates)[0]
             candidates = new_candidates
+
+        prev = L
 
     return likeliest(candidates)
