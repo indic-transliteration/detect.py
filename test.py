@@ -19,9 +19,41 @@ def add_basic_data(scheme, items):
     BASIC_DATA.extend([(x, scheme) for x in items])
 
 
+add_basic_data(Scheme.BENGALI, [
+    'অ',
+    '৺'
+])
 add_basic_data(Scheme.DEVANAGARI, [
-    'अ',
+    'ऄ',
     'ॿ'
+])
+add_basic_data(Scheme.GUJARATI, [
+    'અ',
+    '૱'
+])
+add_basic_data(Scheme.GURMUKHI, [
+    'ਅ',
+    'ੴ'
+])
+add_basic_data(Scheme.KANNADA, [
+    'ಅ',
+    '೯'
+])
+add_basic_data(Scheme.MALAYALAM, [
+    'അ',
+    'ൿ'
+])
+add_basic_data(Scheme.ORIYA, [
+    'ଅ',
+    'ୱ'
+])
+add_basic_data(Scheme.TAMIL, [
+    'அ',
+    '௺'
+])
+add_basic_data(Scheme.TELUGU, [
+    'అ',
+    '౿'
 ])
 
 
