@@ -22,12 +22,16 @@ SCHEMES = [
     ('hk', None)
 ]
 
+#: First code point for Brahmic scripts
+BRAHMIC_FIRST_CODE_POINT = 0x0900
+
+#: Last code point for Brahmic scripts
+BRAHMIC_LAST_CODE_POINT = 0x0d7f
+
+
 #: Schemes sorted by Unicode code point. Ignore schemes with none defined.
 BLOCKS = sorted([x for x in SCHEMES if x[-1]], key=lambda x: -x[1])
 
-
-#: First code point for Brahmic scripts
-BRAHMIC_CODE_POINT = 0x0900
 
 
 class Scheme:
@@ -44,10 +48,11 @@ def detect(text):
 
     :param text: some text data
     """
-    if ord(text[0]) >= BRAHMIC_CODE_POINT:
-        code = ord(text[0])
-        for name, start_code in BLOCKS:
-            if code >= start_code:
-                return name
+    for L in text:
+        code = ord(L)
+        if code >= BRAHMIC_FIRST_CODE_POINT:
+            for name, start_code in BLOCKS:
+                if start_code <= code <= BRAHMIC_LAST_CODE_POINT:
+                    return name
 
     return Scheme.HK

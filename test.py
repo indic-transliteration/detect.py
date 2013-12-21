@@ -10,62 +10,40 @@
 
 import pytest
 
-from detect import detect, Scheme
-
-BASIC_DATA = []
+from detect import detect, Scheme as S
 
 
-def add_basic_data(scheme, items):
-    BASIC_DATA.extend([(x, scheme) for x in items])
+def add(testcases, scheme, items):
+    testcases.extend([(x, scheme) for x in items])
 
 
-add_basic_data(Scheme.BENGALI, [
-    'অ',
-    '৺'
-])
-add_basic_data(Scheme.DEVANAGARI, [
-    'ऄ',
-    'ॿ'
-])
-add_basic_data(Scheme.GUJARATI, [
-    'અ',
-    '૱'
-])
-add_basic_data(Scheme.GURMUKHI, [
-    'ਅ',
-    'ੴ'
-])
-add_basic_data(Scheme.KANNADA, [
-    'ಅ',
-    '೯'
-])
-add_basic_data(Scheme.MALAYALAM, [
-    'അ',
-    'ൿ'
-])
-add_basic_data(Scheme.ORIYA, [
-    'ଅ',
-    'ୱ'
-])
-add_basic_data(Scheme.TAMIL, [
-    'அ',
-    '௺'
-])
-add_basic_data(Scheme.TELUGU, [
-    'అ',
-    '౿'
-])
-
-
-add_basic_data(Scheme.HK, [
+BASIC = []
+add(BASIC, S.BENGALI, ['অ', '৺'])
+add(BASIC, S.DEVANAGARI, ['ऄ', 'ॿ'])
+add(BASIC, S.GUJARATI, ['અ', '૱'])
+add(BASIC, S.GURMUKHI, ['ਅ', 'ੴ'])
+add(BASIC, S.KANNADA, ['ಅ', '೯'])
+add(BASIC, S.MALAYALAM, ['അ', 'ൿ'])
+add(BASIC, S.ORIYA, ['ଅ', 'ୱ'])
+add(BASIC, S.TAMIL, ['அ', '௺'])
+add(BASIC, S.TELUGU, ['అ', '౿'])
+add(BASIC, S.HK, [
     'a',
     'b',
     'c'
 ])
 
 
-@pytest.mark.parametrize('data', BASIC_DATA)
+@pytest.mark.parametrize('data', BASIC)
 def test_basic(data):
     text, scheme = data
     text = text.decode('utf-8')
+    assert detect(text) == scheme
+
+
+@pytest.mark.parametrize('data', BASIC)
+def test_noisy(data):
+    noise = ' \t\n 1234567890! @#$%^&*() ΣД あア'
+    text, scheme = data
+    text = ''.join([noise, text, noise]).decode('utf-8')
     assert detect(text) == scheme
