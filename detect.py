@@ -24,6 +24,7 @@ SCHEMES = [
     ('itrans', None),
     ('kolkata', None),
     ('slp1', None),
+    ('velthuis', None),
 ]
 
 #: Start of the Devanagari block.
@@ -45,6 +46,7 @@ def _make_signature():
         'itrans': u'aa ii uu ^i ^I Ri RI Li LI ~N ~n sh Sh'.split(),
         'kolkata': u'ā ī ū ṛ ṝ ḷ ḹ ē ō ṃ ḥ ṅ ñ ṭ ḍ ṇ ś ṣ'.split(),
         'slp1': u'f F x X E O Y w W q Q'.split(),
+        'velthuis': u'aa ii uu .r .l "n ~n .t .d .n ~s .s'.split(),
     }
 
     signature = {}
@@ -64,6 +66,7 @@ DEFAULT_RANKS = [
     Scheme.ITRANS,
     Scheme.KOLKATA,
     Scheme.SLP1,
+    Scheme.VELTHUIS,
 ]
 
 

@@ -86,6 +86,19 @@ add(BASIC, S.SLP1, [
     'qamaru',
     'soQA',
 ])
+add(BASIC, S.VELTHUIS, [
+    'k.rta',
+    'pit.rrn',
+    'k.lipta',
+    '.llkaara',
+    'a"nga',
+    'ku.tumba',
+    'ka.thora',
+    '.damaru',
+    'aru.na',
+    '~sveta',
+    '.sa.s',
+])
 
 
 @pytest.mark.parametrize('data', BASIC)
