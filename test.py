@@ -29,9 +29,24 @@ add(BASIC, S.TAMIL, ['அ', '௺'])
 add(BASIC, S.TELUGU, ['అ', '౿'])
 add(BASIC, S.HK, [
     '',
-    'a',
-    'b',
-    'c',
+    'rAga',
+    'nadI',
+    'vadhU',
+    'kRta',
+    'pitRRn',
+    'klRpta',
+    'lRR',
+    'tejasvI',
+    'gomayaH'
+    'haMsa',
+    'naraH',
+    'aGga',
+    'aJjana',
+    'kuTumba',
+    'Damaru',
+    'aruNa',
+    'zveta',
+    'SaS',
 ])
 add(BASIC, S.IAST, [
     'rāga',
