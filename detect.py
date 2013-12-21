@@ -22,6 +22,7 @@ SCHEMES = [
     ('hk', None),
     ('iast', None),
     ('kolkata', None),
+    ('slp1', None),
 ]
 
 #: Start of the Devanagari block.
@@ -41,6 +42,7 @@ def _make_signature():
     all_tokens = {
         'iast': u'ā ī ū ṛ ṝ ḷ ḹ ṃ ḥ ṅ ñ ṭ ḍ ṇ ś ṣ'.split(),
         'kolkata': u'ā ī ū ṛ ṝ ḷ ḹ ē ō ṃ ḥ ṅ ñ ṭ ḍ ṇ ś ṣ'.split(),
+        'slp1': u'f F x X E O Y w W q Q'.split(),
     }
 
     signature = {}
@@ -57,7 +59,8 @@ SIGNATURE = _make_signature()
 DEFAULT_RANKS = [
     Scheme.HK,
     Scheme.IAST,
-    Scheme.KOLKATA
+    Scheme.KOLKATA,
+    Scheme.SLP1,
 ]
 
 
@@ -76,7 +79,7 @@ def likeliest(candidates, ranks=None):
 
 
 def detect(text):
-    """Detect the input's transliteration scheme
+    """Detect the input's transliteration scheme.
 
     :param text: some text data
     """

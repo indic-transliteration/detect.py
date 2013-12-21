@@ -50,11 +50,24 @@ add(BASIC, S.IAST, [
     'ḍamaru',
     'aruṇa',
     'śveta',
-    'ṣaṣ'
+    'ṣaṣ',
 ])
 add(BASIC, S.KOLKATA, [
     'tējas',
-    'sōma'
+    'sōma',
+])
+add(BASIC, S.SLP1, [
+    'BrAtf',
+    'pitFn',
+    'kxpta',
+    'XkAra',
+    'kEvalya',
+    'kOsalya',
+    'aYjana',
+    'kuwumba',
+    'kaWora'
+    'qamaru',
+    'soQA',
 ])
 
 
