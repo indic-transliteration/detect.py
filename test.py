@@ -80,7 +80,7 @@ def test_basic(data):
 
 @pytest.mark.parametrize('data', BASIC)
 def test_noisy(data):
-    noise = ' \t\n 1234567890! @#$%^&*() ΣД あア'
+    noise = ' \t\n 1234567890 !@#$%^&*(),.<>\'\"-_[]{}\\|;:`~ ΣД あア'
     text, scheme = data
     text = ''.join([noise, text, noise]).decode('utf-8')
     assert detect(text) == scheme
