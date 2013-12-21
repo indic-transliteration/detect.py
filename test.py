@@ -40,6 +40,8 @@ add(BASIC, S.IAST, [
     'pitṝn',
     'kḷpta',
     'ḹ',
+    'tejasvī',
+    'gomayaḥ'
     'haṃsa',
     'naraḥ',
     'aṅga',
@@ -49,6 +51,10 @@ add(BASIC, S.IAST, [
     'aruṇa',
     'śveta',
     'ṣaṣ'
+])
+add(BASIC, S.KOLKATA, [
+    'tējas',
+    'sōma'
 ])
 
 

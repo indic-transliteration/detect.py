@@ -21,33 +21,58 @@ SCHEMES = [
     ('telugu', 0x0c00),
     ('hk', None),
     ('iast', None),
+    ('kolkata', None),
 ]
 
-#: First code point for Brahmic scripts
+#: Start of the Devanagari block.
 BRAHMIC_FIRST_CODE_POINT = 0x0900
 
-#: Last code point for Brahmic scripts
+#: End of the Malayalam block.
 BRAHMIC_LAST_CODE_POINT = 0x0d7f
-
 
 #: Schemes sorted by Unicode code point. Ignore schemes with none defined.
 BLOCKS = sorted([x for x in SCHEMES if x[-1]], key=lambda x: -x[1])
 
-
-class Scheme:
-
-    """Contains the names of various Sanskrit schemes."""
+#: Enum for Sanskrit schemes.
+Scheme = type('Enum', (), {name.upper() : name for name, code in SCHEMES})
 
 
-for name, code in SCHEMES:
-    setattr(Scheme, name.upper(), name)
+def _make_signature():
+    all_tokens = {
+        'iast': u'ā ī ū ṛ ṝ ḷ ḹ ṃ ḥ ṅ ñ ṭ ḍ ṇ ś ṣ'.split(),
+        'kolkata': u'ā ī ū ṛ ṝ ḷ ḹ ē ō ṃ ḥ ṅ ñ ṭ ḍ ṇ ś ṣ'.split(),
+    }
+
+    signature = {}
+    for scheme, tokens in all_tokens.iteritems():
+        for t in tokens:
+            signature.setdefault(t, []).append(scheme)
+    return signature
+
+#: Maps some token to the schemes that produce it.
+SIGNATURE = _make_signature()
+
+#: Orders schemes from most to least favorable. This is used when a scheme
+#: is encoded ambiguously.
+DEFAULT_RANKS = [
+    Scheme.HK,
+    Scheme.IAST,
+    Scheme.KOLKATA
+]
 
 
-class Signature:
+def likeliest(candidates, ranks=None):
+    """Returns the likeliest choice from a set of candidates:
 
-    """Contains patterns that characterize some scheme."""
-
-    IAST = u'āīūṛṝḷḹṃḥṅñṭḍṇśṣ'
+    :param candidates: a set of candidates
+    :param ranks: an ordering over schemes, from most to least likely.
+                  If ``None``, use `DEFAULT_RANKS` instead.
+    """
+    ranks = ranks or DEFAULT_RANKS
+    for r in ranks:
+        if r in candidates:
+            return r
+    return None
 
 
 def detect(text):
@@ -55,8 +80,10 @@ def detect(text):
 
     :param text: some text data
     """
+    candidates = set(name for (name, code) in SCHEMES)
+
     for L in text:
-        # Brahmic schemes
+        # Brahmic schemes are all within a specific range of code points.
         code = ord(L)
         if code >= BRAHMIC_FIRST_CODE_POINT:
             for name, start_code in BLOCKS:
@@ -64,7 +91,11 @@ def detect(text):
                     return name
 
         # Romanizations
-        if L in Signature.IAST:
-            return Scheme.IAST
+        bottleneck = SIGNATURE.get(L, [])
+        if bottleneck:
+            new_candidates = candidates.intersection(bottleneck)
+            if len(new_candidates) == 1:
+                return list(new_candidates)[0]
+            candidates = new_candidates
 
-    return Scheme.HK
+    return likeliest(candidates)
