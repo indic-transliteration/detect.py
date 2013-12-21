@@ -28,9 +28,10 @@ add(BASIC, S.ORIYA, ['ଅ', 'ୱ'])
 add(BASIC, S.TAMIL, ['அ', '௺'])
 add(BASIC, S.TELUGU, ['అ', '౿'])
 add(BASIC, S.HK, [
+    '',
     'a',
     'b',
-    'c'
+    'c',
 ])
 add(BASIC, S.IAST, [
     'rāga',
