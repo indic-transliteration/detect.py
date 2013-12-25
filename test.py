@@ -37,16 +37,22 @@ add(BASIC, S.HK, [
     'klRpta',
     'lRR',
     'tejasvI',
-    'gomayaH'
+    'gomayaH',
     'haMsa',
     'naraH',
     'aGga',
     'aJjana',
     'kuTumba',
+    'kaThora',
     'Damaru',
+    'soDhA',
     'aruNa',
     'zveta',
     'SaS',
+    'pANDava',
+    'zRNoti',
+    'jJAna',
+    'gacchati',
 ])
 add(BASIC, S.IAST, [
     'rāga',
@@ -57,16 +63,21 @@ add(BASIC, S.IAST, [
     'kḷpta',
     'ḹ',
     'tejasvī',
-    'gomayaḥ'
+    'gomayaḥ',
     'haṃsa',
     'naraḥ',
     'aṅga',
     'añjana',
     'kuṭumba',
+    'kaṭhora',
     'ḍamaru',
+    'soḍhā',
     'aruṇa',
     'śveta',
     'ṣaṣ',
+    'pāṇḍava',
+    'śṛṇoti',
+    'jñāna',
 ])
 add(BASIC, S.ITRANS, [
     'raaga',
@@ -84,6 +95,10 @@ add(BASIC, S.ITRANS, [
     'a~njana',
     'shveta',
     'ShaSh',
+    'shRRiNoti',
+    'j~nAna',
+    'gachChati',
+    'gachchhati',
 ])
 add(BASIC, S.KOLKATA, [
     'tējas',
@@ -103,16 +118,21 @@ add(BASIC, S.SLP1, [
     'kaWora'
     'qamaru',
     'soQA',
+    'pARqava',
+    'SfRoti',
+    'jYAna',
+    'gacCati',
 ])
 add(BASIC, S.VELTHUIS, [
     'k.rta',
     'pit.rrn',
     'k.lipta',
-    '.llkaara',
+    '.ll',
     'a"nga',
     'ku.tumba',
     'ka.thora',
     '.damaru',
+    'so.dhaa',
     'aru.na',
     '~sveta',
     '.sa.s',
@@ -123,7 +143,9 @@ add(BASIC, S.VELTHUIS, [
 def test_basic(data):
     text, scheme = data
     text = text.decode('utf-8')
-    assert detect(text) == scheme
+    detection = detect(text)
+    print text, type(text)
+    assert detection == scheme, u'%s == %s (%s)' % (detection, scheme, text)
 
 
 @pytest.mark.parametrize('data', BASIC)

@@ -8,6 +8,8 @@
     :license: MIT and BSD
 """
 
+import re
+
 #: Scheme data. This is split into separate classes, but here it's DRY.
 SCHEMES = [
     ('bengali', 0x0980),
@@ -40,48 +42,25 @@ BLOCKS = sorted([x for x in SCHEMES if x[-1]], key=lambda x: -x[1])
 Scheme = type('Enum', (), {name.upper() : name for name, code in SCHEMES})
 
 
-def _make_signature():
-    all_tokens = {
-        'iast': u'ā ī ū ṛ ṝ ḷ ḹ ṃ ḥ ṅ ñ ṭ ḍ ṇ ś ṣ'.split(),
-        'itrans': u'aa ii uu ^i ^I Ri RI Li LI ~N ~n sh Sh'.split(),
-        'kolkata': u'ā ī ū ṛ ṝ ḷ ḹ ē ō ṃ ḥ ṅ ñ ṭ ḍ ṇ ś ṣ'.split(),
-        'slp1': u'f F x X E O Y w W q Q Nk Ng'.split(),
-        'velthuis': u'aa ii uu .r .l "n ~n .t .d .n ~s .s'.split(),
-    }
+class Regex:
 
-    signature = {}
-    for scheme, tokens in all_tokens.iteritems():
-        for t in tokens:
-            signature.setdefault(t, set()).add(scheme)
-    return signature
+    #: Match on special Roman characters
+    IAST_OR_KOLKATA_ONLY = re.compile(ur'[āīūṛṝḷḹēōṃḥṅñṭḍṇśṣ]')
 
-#: Maps some token to the schemes that produce it.
-SIGNATURE = _make_signature()
+    #: Match on chars shared by ITRANS and Velthuis
+    ITRANS_OR_VELTHUIS_ONLY = re.compile(ur'aa|ii|uu|~n')
 
-#: Orders schemes from most to least favorable. This is used when a scheme
-#: is encoded ambiguously.
-DEFAULT_RANKS = [
-    Scheme.HK,
-    Scheme.IAST,
-    Scheme.ITRANS,
-    Scheme.KOLKATA,
-    Scheme.SLP1,
-    Scheme.VELTHUIS,
-]
+    #: Match on ITRANS-only
+    ITRANS_ONLY = re.compile(ur'\^[iI]|R[iI]|L[iI]|~N|Ch|chh|sh|Sh')
 
+    #: Match on Kolkata-specific Roman characters
+    KOLKATA_ONLY = re.compile(ur'[ēō]')
 
-def likeliest(candidates, ranks=None):
-    """Returns the likeliest choice from a set of candidates:
+    #: Match on SLP1-only characters
+    SLP1_ONLY = re.compile(ur'[fFxXEOCYwWqQ]|Nk|Ng')
 
-    :param candidates: a set of candidates
-    :param ranks: an ordering over schemes, from most to least likely.
-                  If ``None``, use `DEFAULT_RANKS` instead.
-    """
-    ranks = ranks or DEFAULT_RANKS
-    for r in ranks:
-        if r in candidates:
-            return r
-    return None
+    #: Match on Velthuis-only characters
+    VELTHUIS_ONLY = re.compile(ur'\.r|\.l|[".]n|\.t|\.d|[~\.]s')
 
 
 def detect(text):
@@ -89,28 +68,32 @@ def detect(text):
 
     :param text: some text data
     """
-    candidates = set(name for (name, code) in SCHEMES)
 
-    prev = ''
+    # Brahmic schemes are all within a specific range of code points.
     for L in text:
-        # Brahmic schemes are all within a specific range of code points.
         code = ord(L)
         if code >= BRAHMIC_FIRST_CODE_POINT:
             for name, start_code in BLOCKS:
                 if start_code <= code <= BRAHMIC_LAST_CODE_POINT:
                     return name
 
-        # Romanizations
-        bottleneck = SIGNATURE.get(L, set())
-        if prev:
-            bottleneck = SIGNATURE.get(prev + L, bottleneck)
+    # Romanizations
+    if Regex.IAST_OR_KOLKATA_ONLY.search(text):
+        if Regex.KOLKATA_ONLY.search(text):
+            return Scheme.KOLKATA
+        else:
+            return Scheme.IAST
 
-        if bottleneck:
-            new_candidates = candidates.intersection(bottleneck)
-            if len(new_candidates) == 1:
-                return list(new_candidates)[0]
-            candidates = new_candidates
+    if Regex.ITRANS_ONLY.search(text):
+        return Scheme.ITRANS
 
-        prev = L
+    if Regex.SLP1_ONLY.search(text):
+        return Scheme.SLP1
 
-    return likeliest(candidates)
+    if Regex.VELTHUIS_ONLY.search(text):
+        return Scheme.VELTHUIS
+
+    if Regex.ITRANS_OR_VELTHUIS_ONLY.search(text):
+        return Scheme.ITRANS
+
+    return Scheme.HK
