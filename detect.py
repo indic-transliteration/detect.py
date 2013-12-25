@@ -51,7 +51,7 @@ class Regex:
     ITRANS_OR_VELTHUIS_ONLY = re.compile(ur'aa|ii|uu|~n')
 
     #: Match on ITRANS-only
-    ITRANS_ONLY = re.compile(ur'\^[iI]|R[iI]|L[iI]|~N|Ch|chh|sh|Sh')
+    ITRANS_ONLY = re.compile(ur'\^[iI]|R[iI]|L[iI]|~N|N\^|Ch|chh|JN|sh|Sh')
 
     #: Match on Kolkata-specific Roman characters
     KOLKATA_ONLY = re.compile(ur'[ēō]')
@@ -61,7 +61,7 @@ class Regex:
                            ur'[aAiIuUfFxXeEoO]R')
 
     #: Match on Velthuis-only characters
-    VELTHUIS_ONLY = re.compile(ur'\.r|\.l|[".]n|\.t|\.d|[~\.]s')
+    VELTHUIS_ONLY = re.compile(ur'\.[mhnrlntds]|"n|~s')
 
 
 def detect(text):
