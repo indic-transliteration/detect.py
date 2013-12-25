@@ -122,6 +122,13 @@ add(BASIC, S.SLP1, [
     'SfRoti',
     'jYAna',
     'gacCati',
+    'zaRmAsa',
+    'pariRata',
+    'aruRa',
+    'reRu',
+    'koRa',
+    'karaRa',
+    'akza',
 ])
 add(BASIC, S.VELTHUIS, [
     'k.rta',
