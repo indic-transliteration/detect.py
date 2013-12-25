@@ -8,17 +8,17 @@ from the text itself.
 
 `detect.py` automatically detects a string's transliteration scheme:
 
-    detect('pitRRIn') == 'itrans'
-    detect('pitRRn') == 'hk'
-    detect('pitFn') == 'slp1'
-    detect('पितॄन्') == 'devanagari'
-    detect('পিতৄন্') == 'bengali'
+    detect('pitRRIn') == Scheme.ITRANS
+    detect('pitRRn') == Scheme.HK
+    detect('pitFn') == Scheme.SLP1
+    detect('पितॄन्') == Scheme.Devanagari
+    detect('পিতৄন্') == Scheme.Bengali
 
 Supported schemes
 -----------------
 
-All schemes are attributes on the `Scheme` class. Or, just use the scheme name
-as a lowercase string:
+All schemes are attributes on the `Scheme` class. You can also just use the
+scheme name:
 
     Scheme.IAST == 'IAST'
     Scheme.Devanagari == 'Devanagari'
