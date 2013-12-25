@@ -114,6 +114,7 @@ add(BASIC, S.ITRANS, [
     'shveta',
     'ShaSh',
     'shhashh',
+    '.akarot',
     'shRRiNoti',
     'j~nAna',
     'gachChati',

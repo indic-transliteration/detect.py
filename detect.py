@@ -52,7 +52,7 @@ class Regex:
 
     #: Match on ITRANS-only
     ITRANS_ONLY = re.compile(ur'ee|oo|\^[iI]|RR[iI]|L[iI]|' \
-                             ur'~N|N\^|Ch|chh|JN|sh|Sh')
+                             ur'~N|N\^|Ch|chh|JN|sh|Sh|\.a')
 
     #: Match on Kolkata-specific Roman characters
     KOLKATA_ONLY = re.compile(ur'[ēō]')
