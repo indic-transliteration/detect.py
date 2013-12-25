@@ -177,6 +177,13 @@ add(BASIC, S.VELTHUIS, [
 @pytest.mark.parametrize('data', BASIC)
 def test_basic(data):
     text, scheme = data
+    detection = detect(text)
+    assert detection == scheme, u'%s == %s (%s)' % (detection, scheme, text)
+
+
+@pytest.mark.parametrize('data', BASIC)
+def test_decoded(data):
+    text, scheme = data
     text = text.decode('utf-8')
     detection = detect(text)
     assert detection == scheme, u'%s == %s (%s)' % (detection, scheme, text)
@@ -186,5 +193,5 @@ def test_basic(data):
 def test_noisy(data):
     noise = ' \t\n 1234567890 !@#$%^&*(),.<>\'\"-_[]{}\\|;:`~ ΣД あア'
     text, scheme = data
-    text = ''.join([noise, text, noise]).decode('utf-8')
+    text = ''.join([noise, text, noise])
     assert detect(text) == scheme

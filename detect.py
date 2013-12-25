@@ -68,8 +68,14 @@ class Regex:
 def detect(text):
     """Detect the input's transliteration scheme.
 
-    :param text: some text data
+    :param text: some text data, either a `unicode` or a `str` encoded
+                 in UTF-8.
     """
+    # Verify encoding
+    try:
+        text = text.decode('utf-8')
+    except UnicodeError:
+        pass
 
     # Brahmic schemes are all within a specific range of code points.
     for L in text:
