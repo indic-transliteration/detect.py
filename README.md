@@ -20,25 +20,26 @@ Supported schemes
 All schemes are attributes on the `Scheme` class. Or, just use the scheme name
 as a lowercase string:
 
-    Scheme.IAST == 'iast'
+    Scheme.IAST == 'IAST'
+    Scheme.Devanagari == 'Devanagari'
 
 Scripts:
 
-- Bengali (`Scheme.BENGALI`, `'bengali'`)
-- Devanagari (`Scheme.DEVANAGARI`, `'devanagari'`)
-- Gujarati (`Scheme.GUJARATI`, `'gujarati'`)
-- Gurmukhi (`Scheme.GURMUKHI`, `'gurmukhi'`)
-- Kannada (`Scheme.KANNADA`, `'kannada'`)
-- Malayalam (`Scheme.MALAYALAM`, `'malayalam'`)
-- Oriya (`Scheme.ORIYA`, `'oriya'`)
-- Tamil (`Scheme.TAMIL`, `'tamil'`)
-- Telugu (`Scheme.TELUGU`, `'telugu'`)
+- Bengali (`'Bengali'`)
+- Devanagari (`'Devanagari'`)
+- Gujarati (`'Gujarati'`)
+- Gurmukhi (`'Gurmukhi'`)
+- Kannada (`'Kannada'`)
+- Malayalam (`'Malayalam'`)
+- Oriya (`'Oriya'`)
+- Tamil (`'Tamil'`)
+- Telugu (`'Telugu'`)
 
 Romanizations:
 
-- Harvard-Kyoto (`Scheme.HK`, `'hk'`)
-- IAST (`Scheme.IAST`, `'iast'`)
-- ITRANS (`Scheme.ITRANS`, `'itrans'`)
-- Kolkata (`Scheme.KOLKATA`, `'kolkata'`)
-- SLP1 (`Scheme.SLP1`, `'slp1'`)
-- Velthuis (`Scheme.VELTHUIS`, `'velthuis'`)
+- Harvard-Kyoto (`'HK'`)
+- IAST (`'IAST'`)
+- ITRANS (`'ITRANS'`)
+- Kolkata (`'Kolkata'`)
+- SLP1 (`'SLP1'`)
+- Velthuis (`'Velthuis'`)

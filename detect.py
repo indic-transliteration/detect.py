@@ -12,21 +12,21 @@ import re
 
 #: Scheme data. This is split into separate classes, but here it's DRY.
 SCHEMES = [
-    ('bengali', 0x0980),
-    ('devanagari', 0x0900),
-    ('gujarati', 0x0a80),
-    ('gurmukhi', 0x0a00),
-    ('kannada', 0x0c80),
-    ('malayalam', 0x0d00),
-    ('oriya', 0x0b00),
-    ('tamil', 0x0b80),
-    ('telugu', 0x0c00),
-    ('hk', None),
-    ('iast', None),
-    ('itrans', None),
-    ('kolkata', None),
-    ('slp1', None),
-    ('velthuis', None),
+    ('Bengali', 0x0980),
+    ('Devanagari', 0x0900),
+    ('Gujarati', 0x0a80),
+    ('Gurmukhi', 0x0a00),
+    ('Kannada', 0x0c80),
+    ('Malayalam', 0x0d00),
+    ('Oriya', 0x0b00),
+    ('Tamil', 0x0b80),
+    ('Telugu', 0x0c00),
+    ('HK', None),
+    ('IAST', None),
+    ('ITRANS', None),
+    ('Kolkata', None),
+    ('SLP1', None),
+    ('Velthuis', None),
 ]
 
 #: Start of the Devanagari block.
@@ -39,7 +39,7 @@ BRAHMIC_LAST_CODE_POINT = 0x0d7f
 BLOCKS = sorted([x for x in SCHEMES if x[-1]], key=lambda x: -x[1])
 
 #: Enum for Sanskrit schemes.
-Scheme = type('Enum', (), {name.upper() : name for name, code in SCHEMES})
+Scheme = type('Enum', (), {name : name for name, code in SCHEMES})
 
 
 class Regex:
@@ -88,7 +88,7 @@ def detect(text):
     # Romanizations
     if Regex.IAST_OR_KOLKATA_ONLY.search(text):
         if Regex.KOLKATA_ONLY.search(text):
-            return Scheme.KOLKATA
+            return Scheme.Kolkata
         else:
             return Scheme.IAST
 
@@ -99,7 +99,7 @@ def detect(text):
         return Scheme.SLP1
 
     if Regex.VELTHUIS_ONLY.search(text):
-        return Scheme.VELTHUIS
+        return Scheme.Velthuis
 
     if Regex.ITRANS_OR_VELTHUIS_ONLY.search(text):
         return Scheme.ITRANS

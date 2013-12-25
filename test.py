@@ -18,15 +18,15 @@ def add(testcases, scheme, items):
 
 
 BASIC = []
-add(BASIC, S.BENGALI, ['অ', '৺'])
-add(BASIC, S.DEVANAGARI, ['ऄ', 'ॿ'])
-add(BASIC, S.GUJARATI, ['અ', '૱'])
-add(BASIC, S.GURMUKHI, ['ਅ', 'ੴ'])
-add(BASIC, S.KANNADA, ['ಅ', '೯'])
-add(BASIC, S.MALAYALAM, ['അ', 'ൿ'])
-add(BASIC, S.ORIYA, ['ଅ', 'ୱ'])
-add(BASIC, S.TAMIL, ['அ', '௺'])
-add(BASIC, S.TELUGU, ['అ', '౿'])
+add(BASIC, S.Bengali, ['অ', '৺'])
+add(BASIC, S.Devanagari, ['ऄ', 'ॿ'])
+add(BASIC, S.Gujarati, ['અ', '૱'])
+add(BASIC, S.Gurmukhi, ['ਅ', 'ੴ'])
+add(BASIC, S.Kannada, ['ಅ', '೯'])
+add(BASIC, S.Malayalam, ['അ', 'ൿ'])
+add(BASIC, S.Oriya, ['ଅ', 'ୱ'])
+add(BASIC, S.Tamil, ['அ', '௺'])
+add(BASIC, S.Telugu, ['అ', '౿'])
 add(BASIC, S.HK, [
     '',
     'rAga',
@@ -120,7 +120,7 @@ add(BASIC, S.ITRANS, [
     'gachChati',
     'gachchhati',
 ])
-add(BASIC, S.KOLKATA, [
+add(BASIC, S.Kolkata, [
     'tējas',
     'sōma',
 ])
@@ -157,7 +157,7 @@ add(BASIC, S.SLP1, [
     'aSvatTAman',
     'yudDa',
 ])
-add(BASIC, S.VELTHUIS, [
+add(BASIC, S.Velthuis, [
     'k.rta',
     'pit.rrn',
     'k.lipta',
