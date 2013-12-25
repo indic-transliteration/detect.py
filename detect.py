@@ -45,13 +45,14 @@ Scheme = type('Enum', (), {name.upper() : name for name, code in SCHEMES})
 class Regex:
 
     #: Match on special Roman characters
-    IAST_OR_KOLKATA_ONLY = re.compile(ur'[āīūṛṝḷḹēōṃḥṅñṭḍṇśṣ]')
+    IAST_OR_KOLKATA_ONLY = re.compile(ur'[āīūṛṝḷḹēōṃḥṅñṭḍṇśṣḻ]')
 
     #: Match on chars shared by ITRANS and Velthuis
     ITRANS_OR_VELTHUIS_ONLY = re.compile(ur'aa|ii|uu|~n')
 
     #: Match on ITRANS-only
-    ITRANS_ONLY = re.compile(ur'\^[iI]|R[iI]|L[iI]|~N|N\^|Ch|chh|JN|sh|Sh')
+    ITRANS_ONLY = re.compile(ur'ee|oo|\^[iI]|RR[iI]|L[iI]|' \
+                             ur'~N|N\^|Ch|chh|JN|sh|Sh')
 
     #: Match on Kolkata-specific Roman characters
     KOLKATA_ONLY = re.compile(ur'[ēō]')
