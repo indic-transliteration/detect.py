@@ -53,6 +53,17 @@ add(BASIC, S.HK, [
     'zRNoti',
     'jJAna',
     'gacchati',
+    'SaNmAsa',
+    'pariNata',
+    'aruNa',
+    'reNu',
+    'koNa',
+    'karaNa',
+    'akSa',
+    'antazcarati',
+    'prazna',
+    'azvatthAman',
+    'yuddha',
 ])
 add(BASIC, S.IAST, [
     'rāga',
@@ -105,7 +116,7 @@ add(BASIC, S.KOLKATA, [
     'sōma',
 ])
 add(BASIC, S.SLP1, [
-    'BrAtf',
+    'kfta',
     'pitFn',
     'kxpta',
     'XkAra',
@@ -113,22 +124,28 @@ add(BASIC, S.SLP1, [
     'kOsalya',
     'aNka',
     'aNga',
+    'CAyA',
     'aYjana',
+    'jYAna',
     'kuwumba',
     'kaWora'
     'qamaru',
     'soQA',
     'pARqava',
-    'SfRoti',
-    'jYAna',
+    'Pala',
+    'Bara',
     'gacCati',
     'zaRmAsa',
     'pariRata',
     'aruRa',
+    'SfRoti',
     'reRu',
     'koRa',
-    'karaRa',
     'akza',
+    'antaScarati',
+    'praSna',
+    'aSvatTAman',
+    'yudDa',
 ])
 add(BASIC, S.VELTHUIS, [
     'k.rta',
@@ -151,7 +168,6 @@ def test_basic(data):
     text, scheme = data
     text = text.decode('utf-8')
     detection = detect(text)
-    print text, type(text)
     assert detection == scheme, u'%s == %s (%s)' % (detection, scheme, text)
 
 

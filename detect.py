@@ -57,14 +57,14 @@ class Regex:
     KOLKATA_ONLY = re.compile(ur'[ēō]')
 
     #: Match on SLP1-only characters and bigrams
-    SLP1_ONLY = re.compile(ur'[fFxXEOCYwWqQ]|Nk|Ng|kz|' \
+    SLP1_ONLY = re.compile(ur'[fFxXEOCYwWqQPB]|kz|Nk|Ng|tT|dD|Sc|Sn|' \
                            ur'[aAiIuUfFxXeEoO]R')
 
     #: Match on Velthuis-only characters
     VELTHUIS_ONLY = re.compile(ur'\.r|\.l|[".]n|\.t|\.d|[~\.]s')
 
 
-def detect(text, default=Scheme.HK):
+def detect(text):
     """Detect the input's transliteration scheme.
 
     :param text: some text data
@@ -97,4 +97,4 @@ def detect(text, default=Scheme.HK):
     if Regex.ITRANS_OR_VELTHUIS_ONLY.search(text):
         return Scheme.ITRANS
 
-    return default
+    return Scheme.HK
