@@ -13,3 +13,32 @@ from the text itself.
     detect('pitFn') == 'slp1'
     detect('पितॄन्') == 'devanagari'
     detect('পিতৄন্') == 'bengali'
+
+Supported schemes
+-----------------
+
+All schemes are attributes on the `Scheme` class. Or, just use the scheme name
+as a lowercase string:
+
+    Scheme.IAST == 'iast'
+
+Scripts:
+
+- Bengali (`Scheme.BENGALI`)
+- Devanagari (`Scheme.DEVANAGARI`)
+- Gujarati (`Scheme.GUJARATI`)
+- Gurmukhi (`Scheme.GURMUKHI`)
+- Kannada (`Scheme.KANNADA`)
+- Malayalam (`Scheme.MALAYALAM`)
+- Oriya (`Scheme.ORIYA`)
+- Tamil (`Scheme.TAMIL`)
+- Telugu (`Scheme.TELUGU`)
+
+Romanizations:
+
+- Harvard-Kyoto (`Scheme.HK`)
+- IAST (`Scheme.IAST`)
+- ITRANS (`Scheme.ITRANS`)
+- Kolkata (`Scheme.KOLKATA`)
+- SLP1 (`Scheme.SLP1`)
+- Velthuis (`Scheme.VELTHUIS`)
