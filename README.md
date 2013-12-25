@@ -24,21 +24,21 @@ as a lowercase string:
 
 Scripts:
 
-- Bengali (`Scheme.BENGALI`)
-- Devanagari (`Scheme.DEVANAGARI`)
-- Gujarati (`Scheme.GUJARATI`)
-- Gurmukhi (`Scheme.GURMUKHI`)
-- Kannada (`Scheme.KANNADA`)
-- Malayalam (`Scheme.MALAYALAM`)
-- Oriya (`Scheme.ORIYA`)
-- Tamil (`Scheme.TAMIL`)
-- Telugu (`Scheme.TELUGU`)
+- Bengali (`Scheme.BENGALI`, `'bengali'`)
+- Devanagari (`Scheme.DEVANAGARI`, `'devanagari'`)
+- Gujarati (`Scheme.GUJARATI`, `'gujarati'`)
+- Gurmukhi (`Scheme.GURMUKHI`, `'gurmukhi'`)
+- Kannada (`Scheme.KANNADA`, `'kannada'`)
+- Malayalam (`Scheme.MALAYALAM`, `'malayalam'`)
+- Oriya (`Scheme.ORIYA`, `'oriya'`)
+- Tamil (`Scheme.TAMIL`, `'tamil'`)
+- Telugu (`Scheme.TELUGU`, `'telugu'`)
 
 Romanizations:
 
-- Harvard-Kyoto (`Scheme.HK`)
-- IAST (`Scheme.IAST`)
-- ITRANS (`Scheme.ITRANS`)
-- Kolkata (`Scheme.KOLKATA`)
-- SLP1 (`Scheme.SLP1`)
-- Velthuis (`Scheme.VELTHUIS`)
+- Harvard-Kyoto (`Scheme.HK`, `'hk'`)
+- IAST (`Scheme.IAST`, `'iast'`)
+- ITRANS (`Scheme.ITRANS`, `'itrans'`)
+- Kolkata (`Scheme.KOLKATA`, `'kolkata'`)
+- SLP1 (`Scheme.SLP1`, `'slp1'`)
+- Velthuis (`Scheme.VELTHUIS`, `'velthuis'`)
