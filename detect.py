@@ -59,7 +59,8 @@ class Regex:
 
     #: Match on SLP1-only characters and bigrams
     SLP1_ONLY = re.compile(ur'[fFxXEOCYwWqQPB]|kz|Nk|Ng|tT|dD|Sc|Sn|' \
-                           ur'[aAiIuUfFxXeEoO]R')
+                           ur'[aAiIuUfFxXeEoO]R|' \
+                           ur'G[yr]|(\W|^)G')
 
     #: Match on Velthuis-only characters
     VELTHUIS_ONLY = re.compile(ur'\.[mhnrlntds]|"n|~s')
